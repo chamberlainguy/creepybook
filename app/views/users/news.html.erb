@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>News</h1>
+<h1>News Feed</h1>
 
 <% @statuses.each do |status| %>
       
@@ -10,7 +10,7 @@
 
     	<% unless status.postedby_user == status.ownedby_user %>
             <br>
-    		posted on <%= status.ownedby_user.firstname %> wall
+    		 <%= link_to "Posted on " + status.ownedby_user.fullname + "'s wall", user_wall_path(status.ownedby_user) %>
     	<% end %>
     	
         <p>Posted by: <%= image_tag(status.postedby_user.pic, width:25) %>  
@@ -31,7 +31,7 @@
         <% end %>
         <br>
         <%= form_tag post_comment_path(status.id), :method => :post do |f| %>   
-            <%= text_field_tag :comment, nil, :placeholder => 'Comment'  %>
+            <%= text_field_tag :comment, nil, :placeholder => 'Comment', class: 'commentinput'  %>
             <%= submit_tag "Post", :class => 'submit' %>
         <% end %>
 

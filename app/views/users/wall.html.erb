@@ -35,7 +35,7 @@
 <div class='wallright'>
 
     <%= form_tag post_status_path(@user), :method => :post do |f| %>   
-            <%= text_field_tag :status, nil, :placeholder => 'Write something revealing/creepy'  %>
+            <%= text_field_tag :status, nil, :placeholder => 'Write something revealing/creepy', class: 'statusinput'  %>
             <%= submit_tag "Post", :class => 'submit' %>
      <% end %>
     <br><br>
@@ -65,7 +65,7 @@
             <% end %>
             <br>
         	<%= form_tag post_comment_path(status.id), :method => :post do |f| %>   
-                <%= text_field_tag :comment, nil, :placeholder => 'Comment'  %>
+                <%= text_field_tag :comment, nil, :placeholder => 'Comment', class: 'commentinput'  %>
                 <%= submit_tag "Post", :class => 'submit' %>
             <% end %>
 

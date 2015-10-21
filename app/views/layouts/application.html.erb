@@ -8,19 +8,42 @@
 </head>
 <body>
 
-<div class='container'>
+<!-- <div class="menuBar">
+        <img class="logo" src="logo.jpg"/>
+        <div class="nav"> 
+            <ul>
+                <li>Menu1</li>
+                <li>Menu 2</li>
+                <li>Menu 3</li>
+            </ul> 
+        </div>
+    </div>
+ -->
 
-	<%= link_to 'Home', '/'%> |
+<div class="container">
 
-	<% if @current_user.present? %>
-	      <%= link_to "Edit profile", edit_user_path(@current_user) %> |
-	      <%= link_to "My Wall", user_wall_path(@current_user) %> |
-	      <%= link_to "Search", search_path %> |
+	<nav class="navbar navbar-default">
 
-	      <%= link_to "Logout " + @current_user.fullname, login_path, :method => 'delete', :data => { :confirm => 'Are you sure you wish to logout?' } %>
-	<% else %>
-	      <%= link_to 'Signup!', new_user_path %> 
-	<% end %>
+		<div class="container-fluid">
+
+			<ul class="nav navbar-nav">
+
+				<li><%= link_to 'Home', '/'%>  </li> 
+
+				<% if @current_user.present? %>
+					  <li><%= link_to "Edit profile", edit_user_path(@current_user) %> </li> 
+					  <li><%= link_to "My Wall", user_wall_path(@current_user) %> </li> 
+					  <li><%= link_to "Search", search_path %> </li> 
+					  <li><%= link_to "Logout " + @current_user.fullname, login_path, :method => 'delete', :data => { :confirm => 'Are you sure you wish to logout?' } %>    </li>
+				<% else %>
+					      <li><%= link_to 'Signup!', new_user_path %></li>
+				<% end %>
+			      
+			</ul>  
+			
+		</div>	<!-- /.container-fluid -->
+		      
+	</nav>
 	      
 	<%= yield %>
 
