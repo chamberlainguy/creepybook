@@ -14,14 +14,14 @@
 
     <% unless @user == @current_user %>
         <% if @current_user.friends.include?(@user) %>
-            <%= button_to "Unfriend", unfriend_path(id: @user) %>
+            <%= button_to "Unfriend", unfriend_path(id: @user), class: 'button' %>
         <% else %>
-            <%= button_to "Befriend", befriend_path(id: @user) %>
+            <%= button_to "Befriend", befriend_path(id: @user), class: 'button'  %>
         <% end %>    
     <% end %>
 
 
-    <%= button_to "Photos", photos_path(@user), method: :get %>
+    <%= button_to "Photos", photos_path(@user), method: :get, class: 'button'  %>
 
     <p><%= pluralize(@user.friends.count,'friend') %></p>
 
