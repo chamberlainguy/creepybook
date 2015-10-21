@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<% if @user == @current_user %>
+    <h1>My Wall</h1>
+<% else %>
+    <h1><%= @user.fullname + "'s Wall" %></h1>
+<% end %>   
+
+
+<div class='friendsleft'>
+
+    <p><%= @user.fullname %></p>
+    <%= image_tag @user.pic, width: 200 %>
+
+    <% unless @user == @current_user %>
+        <% if @current_user.friends.include?(@user) %>
+            <%= button_to "Unfriend", unfriend_path(id: @user) %>
+        <% else %>
+            <%= button_to "Befriend", befriend_path(id: @user) %>
+        <% end %>    
+    <% end %>
+
+
+    <%= button_to "Photos", photos_path(@user), method: :get %>
+
+    <p><%= pluralize(@user.friends.count,'friend') %></p>
+
+    <% @user.friends.each do |f| %>
+        <%= link_to image_tag(f.pic, width: 100), user_wall_path(f) %>
+        <%= f.fullname %>
+    <% end %>
+
+</div>
+
+<div class='wallright'>
+
+    <%= form_tag post_status_path(@user), :method => :post do |f| %>   
+            <%= text_field_tag :status, nil, :placeholder => 'Write something revealing/creepy'  %>
+            <%= submit_tag "Post", :class => 'submit' %>
+     <% end %>
+    <br><br>
+
+    <% @user.ownedby_statuses.order('created_at DESC').each do |status| %>
+          
+        <p>  
+        <b><%= status.blurb %></b>
+    	</p>
+        Posted by: <%= image_tag(status.postedby_user.pic, width:25) %>  
+                <%= link_to status.postedby_user.fullname, 
+                        user_wall_path(status.postedby_user) %>
+                    
+        <%= link_to pluralize(status.likes,"Like"), like_path(status),method: :post %>
+        
+        <%= link_to pluralize(status.dislikes,"Dislike"), dislike_path(status),method: :post %>
+
+        <% status.comments.order(:created_at).each do |comment| %>
+            <p><%= comment.blurb %></p>
+            Posted by: <%= image_tag(comment.user.pic, width:25) %>  
+                <%= link_to comment.user.fullname, 
+                        user_wall_path(comment.user) %>
+        <% end %>
+    	<%= form_tag post_comment_path(status.id), :method => :post do |f| %>   
+            <%= text_field_tag :comment, nil, :placeholder => 'Comment'  %>
+            <%= submit_tag "Post", :class => 'submit' %>
+        <% end %>
+
+    <% end %>
+ 
+</div>  

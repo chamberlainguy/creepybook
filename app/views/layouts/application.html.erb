@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Creepybook</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class='container'>
+
+	<%= link_to 'Home', '/'%> |
+
+	<% if @current_user.present? %>
+	      <%= link_to "Edit profile", edit_user_path(@current_user) %> |
+	      <%= link_to "My Wall", user_wall_path(@current_user) %> |
+	      <%= link_to "Search", search_path %> |
+
+	      <%= link_to "Logout " + @current_user.fullname, login_path, :method => 'delete', :data => { :confirm => 'Are you sure you wish to logout?' } %>
+	<% else %>
+	      <%= link_to 'Signup!', new_user_path %> 
+	<% end %>
+	      
+	<%= yield %>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Blurb:</strong>
+  <%= @status.blurb %>
+</p>
+
+<p>
+  <strong>Likes:</strong>
+  <%= @status.likes %>
+</p>
+
+<p>
+  <strong>Dislikes:</strong>
+  <%= @status.dislikes %>
+</p>
+
+<%= link_to 'Edit', edit_status_path(@status) %> |
+<%= link_to 'Back', statuses_path %>

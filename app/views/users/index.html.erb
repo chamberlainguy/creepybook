@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @search_desc %></h1>
+
+<% @users.each do |user| %>
+        <%= link_to image_tag(user.pic, width: 100), user_wall_path(user) %>
+        <%= user.fullname %>
+<% end %>
+
+<br>
+

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>News</h1>
+
+<% @statuses.each do |status| %>
+      
+    <b><%= status.blurb %></b>
+
+	<% unless status.postedby_user == status.ownedby_user %>
+		posted on <%= status.ownedby_user.firstname %> wall
+	<% end %>
+	
+    <p>Posted by: <%= image_tag(status.postedby_user.pic, width:25) %>  
+                <%= link_to status.postedby_user.fullname, 
+                        user_wall_path(status.postedby_user) %></p>
+                    
+        <%= link_to pluralize(status.likes,"Like"), like_path(status),method: :post %>
+        
+        <%= link_to pluralize(status.dislikes,"Dislike"), dislike_path(status),method: :post %>
+
+    <% status.comments.order(:created_at).each do |comment| %>
+        <p><%= comment.blurb %></p>
+        Posted by: <%= image_tag(comment.user.pic, width:25) %>  
+                <%= link_to comment.user.fullname, 
+                        user_wall_path(comment.user) %>
+    <% end %>
+
+    <%= form_tag post_comment_path(status.id), :method => :post do |f| %>   
+        <%= text_field_tag :comment, nil, :placeholder => 'Comment'  %>
+        <%= submit_tag "Post", :class => 'submit' %>
+    <% end %>
+
+<% end %>
+ 
+  
