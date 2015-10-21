@@ -41,28 +41,35 @@
     <br><br>
 
     <% @user.ownedby_statuses.order('created_at DESC').each do |status| %>
-          
-        <p>  
-        <b><%= status.blurb %></b>
-    	</p>
-        Posted by: <%= image_tag(status.postedby_user.pic, width:25) %>  
-                <%= link_to status.postedby_user.fullname, 
-                        user_wall_path(status.postedby_user) %>
-                    
-        <%= link_to pluralize(status.likes,"Like"), like_path(status),method: :post %>
-        
-        <%= link_to pluralize(status.dislikes,"Dislike"), dislike_path(status),method: :post %>
+         
+        <div class="statusbox">
 
-        <% status.comments.order(:created_at).each do |comment| %>
-            <p><%= comment.blurb %></p>
-            Posted by: <%= image_tag(comment.user.pic, width:25) %>  
-                <%= link_to comment.user.fullname, 
-                        user_wall_path(comment.user) %>
-        <% end %>
-    	<%= form_tag post_comment_path(status.id), :method => :post do |f| %>   
-            <%= text_field_tag :comment, nil, :placeholder => 'Comment'  %>
-            <%= submit_tag "Post", :class => 'submit' %>
-        <% end %>
+            <p>  
+            <b><%= status.blurb %></b>
+        	</p>
+            Posted by: <%= image_tag(status.postedby_user.pic, width:25) %>  
+                    <%= link_to status.postedby_user.fullname, 
+                            user_wall_path(status.postedby_user) %>
+            <br>
+            <%= link_to pluralize(status.likes,"Like"), like_path(status),method: :post %>
+            
+            <%= link_to pluralize(status.dislikes,"Dislike"), dislike_path(status),method: :post %>
+
+            <% status.comments.order(:created_at).each do |comment| %>
+                <div class="commentbox"
+                    <p><%= comment.blurb %></p>
+                    Posted by: <%= image_tag(comment.user.pic, width:25) %>  
+                        <%= link_to comment.user.fullname, 
+                                user_wall_path(comment.user) %>
+                </div>
+            <% end %>
+            <br>
+        	<%= form_tag post_comment_path(status.id), :method => :post do |f| %>   
+                <%= text_field_tag :comment, nil, :placeholder => 'Comment'  %>
+                <%= submit_tag "Post", :class => 'submit' %>
+            <% end %>
+
+        </div>
 
     <% end %>
  
