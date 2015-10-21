@@ -6,16 +6,21 @@
       
     <div class="statusbox">
 
-        <b><%= status.blurb %></b>
+        <span class="posttext"><%= status.blurb %></span>
 
     	<% unless status.postedby_user == status.ownedby_user %>
             <br>
     		 <%= link_to "Posted on " + status.ownedby_user.fullname + "'s wall", user_wall_path(status.ownedby_user) %>
+             
     	<% end %>
-    	
-        <p>Posted by: <%= image_tag(status.postedby_user.pic, width:25) %>  
+    	    <br>   
+            <span class="postby">
+            <%= image_tag(status.postedby_user.pic, width:25) %>  
                     <%= link_to status.postedby_user.fullname, 
-                            user_wall_path(status.postedby_user) %></p>
+                            user_wall_path(status.postedby_user) %>
+            <%= time_ago_in_words(status.created_at) %> ago
+            </span>
+
             <br>            
             <%= link_to pluralize(status.likes,"Like"), like_path(status),method: :post %>
             
@@ -23,10 +28,15 @@
 
         <% status.comments.order(:created_at).each do |comment| %>
             <div class="commentbox">
-                <p><%= comment.blurb %></p>
-                Posted by: <%= image_tag(comment.user.pic, width:25) %>  
+                <p><span class="posttext"><%= comment.blurb %></span></p>
+                
+                <span class="postby">
+                <%= image_tag(comment.user.pic, width:25) %>  
                         <%= link_to comment.user.fullname, 
                                 user_wall_path(comment.user) %>
+                <%= time_ago_in_words(comment.created_at) %> ago
+                </span>
+                
             </div>
         <% end %>
         <br>
