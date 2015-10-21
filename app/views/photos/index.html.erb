@@ -1,10 +1,12 @@
 <h1><%= @user.fullname %>'s Photos</h1>
 
-Profile Picture
-<%= image_tag(@user.pic, width: 100) %>
+<%= image_tag(@user.pic, width:250) %>
 
 <% @user.pictures.each do |p| %>
-        <%= image_tag(p.url, width: 100) %>
+        <%= image_tag(p.url, width: 250) %>
 <% end %>
+
+<br>
+<br>
 
 <%= link_to "Back", user_wall_path(@user) %>

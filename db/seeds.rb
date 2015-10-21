@@ -12,8 +12,8 @@
 #  email           :string
 
 User.destroy_all
-u1 = User.create firstname: 'Dude',  surname: 'Hipster', 
-				email: 'dude@gmail.com', password: 'chicken',
+u1 = User.create firstname: 'React',  surname: 'Hipster', 
+				email: 'react@gmail.com', password: 'chicken',
 				pic: 'http://social-vibez.com/file/pic/photo/605ac7e4c16b8a013b4779b81f883e66_240.jpg'
 u2 = User.create firstname: 'Angela', surname: 'Molloy', 
 				email: 'angela@gmail.com', password: 'chicken',
