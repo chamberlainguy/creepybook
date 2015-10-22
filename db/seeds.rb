@@ -7,10 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-#  firstname       :string
-#  surname         :string
-#  email           :string
-
 User.destroy_all
 u1 = User.create firstname: 'React',  surname: 'Hipster', 
 				email: 'react@gmail.com', password: 'chicken',
@@ -61,7 +57,7 @@ u2.pictures << p4
 p5 = Picture.create url: 'http://i.ytimg.com/vi/mSFTRoBY99s/hqdefault.jpg'
 u3.pictures << p5
 
-p6 = Picture.create url: 'http://gogoapp.me/upload/19-09-2014-1411113187.jpg'
+p6 = Picture.create url: 'http://res.cloudinary.com/dmsp719b6/image/upload/v1445476055/19-09-2014-1411113187_mhhwed.jpg'
 u1.pictures << p6
 
 
