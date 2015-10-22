@@ -30,4 +30,6 @@ Rails.application.routes.draw do
 
   get  '/photos/:id' => 'photos#index', as: :photos
 
+  get  '/map/:id' => 'photos#map', as: :map
+
 end

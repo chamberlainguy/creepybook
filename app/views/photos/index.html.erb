@@ -3,7 +3,13 @@
 <%= image_tag(@user.pic, width:250) %>
 
 <% @user.pictures.each do |p| %>
+
+
+        <!-- <%= link_to image_tag(p.url, width: 250), map_path(p) %> -->
+
         <%= image_tag(p.url, width: 250) %>
+
+
 <% end %>
 
 <br>

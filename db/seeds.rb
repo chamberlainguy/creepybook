@@ -61,6 +61,13 @@ u2.pictures << p4
 p5 = Picture.create url: 'http://i.ytimg.com/vi/mSFTRoBY99s/hqdefault.jpg'
 u3.pictures << p5
 
+p6 = Picture.create url: 'http://gogoapp.me/upload/19-09-2014-1411113187.jpg'
+u1.pictures << p6
+
+
+
+
+
 
 
 
