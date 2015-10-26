@@ -23,7 +23,7 @@ u2.friends << u1
 u3.friends << u1
 
 Status.destroy_all
-s1 = Status.create blurb: 'I love an IV drip', likes: 101, dislikes: 202
+s1 = Status.create blurb: 'Just a test status update', likes: 101, dislikes: 202
 s2 = Status.create blurb: 'Im in Paris and I love it', likes: 101, dislikes: 202
 
 u1.ownedby_statuses << s1
@@ -33,8 +33,8 @@ u2.ownedby_statuses << s2
 u2.postedby_statuses << s2
 
 Comment.destroy_all
-c1 = Comment.create blurb: 'What! are u an a Drip!!'
-c2 = Comment.create blurb: 'yeah I love drips too'
+c1 = Comment.create blurb: 'Hi, React how have you been'
+c2 = Comment.create blurb: 'I have been great too'
 
 s1.comments << c1 << c2
 
